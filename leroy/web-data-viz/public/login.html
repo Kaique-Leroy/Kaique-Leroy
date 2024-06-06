@@ -1,0 +1,246 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lado Sombrio | Login</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href=";/assets/imagens/favicon2.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <img src="./assets/image-removebg-preview.png">
+            <ul class="navbar">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>Quiz</li>
+                <li>|</li>
+                <li class="agora">Login</li>
+                <li>
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="login">
+        
+        <div class="container">
+
+            <div class="card2">
+                <h2>Login</h2>
+                <div class="formulario">
+                    <div class="campo">
+                        <label class="lbl">Email:</label>
+                        <input class="ipt" id="input_email" type="text" placeholder="Digite seu email">
+                        <div class="campo">
+                            <label class="lbl"> Senha:</label>
+                            <input class="ipt"  id="input_senha" type="password" placeholder="*******">
+                           
+                        </div>
+                    </div>
+                    <button class="btn" onclick="entrar()">Entrar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <p>Entre agora e veja o nosso catálogo de filmes atualizados!</p>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function entrar() {
+    
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+    
+        if (emailVar == "" || senhaVar == "") {
+            
+           alert("Preencha todos os campos!")
+            return false;
+        }
+    
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+    
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+    
+            if (resposta.ok) {
+                console.log(resposta);
+    
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+    
+                    setTimeout(function () {
+                       alert('Login efetuado com sucesso!')
+                       window.location.href="quiz.html"
+                    },); 
+    
+                });
+    
+            } else {
+                    alert('Email e/ou senha inválidos!')
+                console.log("Houve um erro ao tentar realizar o login!");
+    
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+    
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    
+        return false;
+    }
+    </script> -->
+
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lado Sombrio | Login</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="shortcut icon" href="imagens/favicon2.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container">
+            <img src="assets/ladosombrioBranco.png">
+            <ul class="navbar">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>|</li>
+                <li class="agora"><u>Login</u></li>
+                <li>
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="login">
+        <div class="banner">
+            <div class="container">
+                <div class="card2">
+                    <h2>Login</h2>
+                    <div class="formulario">
+                        <div class="campo">
+                            <label class="lbl">Email:</label>
+                            <input class="ipt" id="input_email" type="text" placeholder="Digite seu email">
+                            <div class="campo">
+                                <label class="lbl"> Senha:</label>
+                                <input class="ipt" id="input_senha" type="password" placeholder="*******">
+
+                            </div>
+                        </div>
+
+                        <button class="btn" onclick="entrar()">Entrar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        <div class="footer">
+            <p>Entre agora e teste seus conhecimentos sobre o gênero de terror!</p>
+        </div>
+</body>
+
+</html>
+
+<script>
+
+    function entrar() {
+
+        var emailVar = input_email.value;
+        var senhaVar = input_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+
+            alert("Preencha todos os campos!")
+            return false;
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+
+                    setTimeout(function () {
+                        alert('Login efetuado com sucesso!')
+                        window.location.href = "quiz.html"
+                    },);
+
+                });
+
+            } else {
+                alert('Email e/ou senha inválidos!')
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>

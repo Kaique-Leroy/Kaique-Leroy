@@ -1,0 +1,350 @@
+.center {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2%;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+header {
+    height: 100px;
+    padding: 20px 0;
+    background: linear-gradient(to bottom, #000000, #292929);
+}
+
+img {
+    width: 300px;
+    height: 100px;
+
+
+}
+
+.logo {
+    width: 50%;
+}
+
+.menu {
+    padding-top: 30px;
+    width: 50%;
+    text-align: right;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 15px;
+
+}
+
+section.sobre {
+    height: calc(100% - 200px);
+    background-color: rgb(0, 0, 0);
+
+
+}
+
+
+.gif {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(FONTS/download.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+@font-face {
+    font-family: Caracura;
+    src: url(CSS/FONTS/CARACURA.TTF);
+}
+
+@font-face {
+    font-family: Fiendish;
+    src: url(FONTS/Fiendish.ttf);
+}
+
+
+
+.gif p {
+    color: white;
+    margin-left: 700px;
+    font-family: Caracura;
+    font-size: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+h3 a {
+    color: rgb(255, 0, 0);
+    margin-left: 700px;
+    font-family: Caracura;
+    font-size: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 900px;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    margin-top: 10px;
+  
+}
+
+.card {
+    height: 500px;
+    width: 350px;
+    text-align: center;
+    border: 3px solid #ff0000;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    position: relative;
+    transform-style: preserve-3d;
+    /* Preserva o estilo 3D para os filhos */
+    transition: transform 0.5s;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Esconde a parte de trás quando está virada */
+    text-align: justify;
+    align-items: center;
+}
+
+.front {
+    height: 500px;
+    width: 350px;
+    text-align: center;
+    border: 3px solid #ff0000;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+}
+
+.back {
+    transform: rotateY(180deg);
+    /* Vira a parte de trás para que fique escondida inicialmente */
+    height: 500px;
+    width: 350px;
+    text-align: end;
+    border: 3px solid #ff0000;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+    /* Gira o card quando o mouse passa por cima */
+}
+
+
+.card img {
+    width: 100%;
+    height: 50%;
+}
+
+.card h4 {
+    font-size: 24px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #bc2d2d;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: xx-large;
+}
+
+h4:hover {
+    transform: scale(1.3);
+    transition: 0.5s ease;
+    text-shadow: 2px 2px 5px #bc2d2d, 5px 5px 70px #bc2d2d;
+}
+
+.card p {
+    margin-top: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 2px;
+    font-weight: bold;
+    width: 320px;
+    text-align: left;
+}
+
+h1 {
+    margin-top: 5px;
+    margin-bottom: 30px;
+    color: #ff0000;
+    width: 900px;
+    height: 200px;
+    font-family: Fiendish;
+}
+
+h1:hover {
+    transform: scale(1.3);
+    transition: 1s ease;
+    text-shadow: 2px 2px 5px #bc2d2d, 5px 5px 70px #bc2d2d;
+}
+
+
+.titulocard {
+    margin-bottom: 40px;
+    margin-top: 30px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 300px;
+}
+
+b {
+    color: #bc2d2d;
+}
+
+
+body::-webkit-scrollbar {
+    width: 5px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 70px;
+    border: 3px solid #bc2d2d;
+}
+
+
+.container-terror {
+    display: flex;
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0;
+    padding: 20px;
+    background-color: transparent;
+    flex-direction: column;
+
+
+}
+
+.titulo {
+    color: #ff0000;
+    text-align: justify;
+    height: 100px;
+    width: 500px;
+    margin-left: 500px;
+}
+
+.subtitulo {
+    color: #ff0000;
+    text-align: start;
+    height: 30px;
+    width: 500px;
+    margin-left: 100px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+
+/* Estilo para o conteúdo */
+.conteudo1 {
+    color: #ffffff;
+    /* Define a cor do texto como branco */
+    width: 90vw;
+    /* Define a largura do elemento como 90% da largura da viewport */
+    padding: 10px;
+    /* Adiciona um espaçamento interno de 10 pixels */
+    background-color: transparent;
+    /* Define um fundo cinza escuro */
+    border-radius: 8px;
+    /* Adiciona bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(255, 253, 253, 0.9);
+    /* Adiciona uma sombra sutil */
+    font-size: 16px;
+    /* Define o tamanho da fonte */
+    line-height: 1.5;
+    /* Define o espaçamento entre linhas */
+    /* Comentário: Essas alterações visam melhorar a legibilidade e a aparência geral do conteúdo. */
+    margin-left: 40px;
+    margin-bottom: 30px;
+
+}
+
+.conteudo2 {
+    color: #ffffff;
+    /* Define a cor do texto como branco */
+    width: 90vw;
+    /* Define a largura do elemento como 90% da largura da viewport */
+    padding: 10px;
+    /* Adiciona um espaçamento interno de 10 pixels */
+    background-color: transparent;
+    /* Define um fundo cinza escuro */
+    border-radius: 8px;
+    /* Adiciona bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(255, 253, 253, 0.9);
+    /* Adiciona uma sombra sutil */
+    font-size: 16px;
+    /* Define o tamanho da fonte */
+    line-height: 1.5;
+    /* Define o espaçamento entre linhas */
+    /* Comentário: Essas alterações visam melhorar a legibilidade e a aparência geral do conteúdo. */
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+.conteudo3 {
+    color: #ffffff;
+    /* Define a cor do texto como branco */
+    width: 90vw;
+    /* Define a largura do elemento como 90% da largura da viewport */
+    padding: 10px;
+    /* Adiciona um espaçamento interno de 10 pixels */
+    background-color: transparent;
+    /* Define um fundo cinza escuro */
+    border-radius: 8px;
+    /* Adiciona bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(255, 253, 253, 0.9);
+    /* Adiciona uma sombra sutil */
+    font-size: 16px;
+    /* Define o tamanho da fonte */
+    line-height: 1.5;
+    /* Define o espaçamento entre linhas */
+    /* Comentário: Essas alterações visam melhorar a legibilidade e a aparência geral do conteúdo. */
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+
+h2 {
+    margin-top: 50px;
+    color: #bc2d2d;
+    width: 900px;
+    height: 200px;
+    font-family: Fiendish;
+}
+
+h2:hover {
+    transform: scale(1.3);
+    transition: 1s ease;
+    text-shadow: 2px 2px 5px #bc2d2d, 5px 5px 70px #bc2d2d;
+}

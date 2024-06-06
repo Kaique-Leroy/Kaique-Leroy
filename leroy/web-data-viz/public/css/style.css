@@ -1,0 +1,511 @@
+/* body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: black;
+    height: 150px;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.85);
+
+}
+
+.container img {
+
+    width: 300px;
+}
+
+.titulo {
+    color: #32b9cd;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    width: 300px;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+    height: 70px;
+    margin-right: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.navbar ul{
+    margin-bottom: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    color: black;
+    border: 5px solid black;
+    border-radius: 50px;
+    justify-content: space-between;
+    margin-top: 0px;
+    height: 100px;
+}
+
+.banner {
+
+    padding: 40px 0;
+    color: white;
+    height: 400px;
+    background-image: url("imagens/bg-jelly-fish-para_outras_pags.png");
+
+
+}
+
+.banner .container {
+
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+.banner .container p {
+    font-size: 36px;
+    width: 25%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.banner .container p span {
+
+    font-weight: bold;
+
+}
+
+.social {
+    background-color: white;
+    padding: 40px;
+
+}
+
+.card {
+    width: 300px;
+    text-align: center;
+    border: 5px solid #32b9cd;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.card img {
+    width: 100%;
+}
+
+.card h4 {
+    font-size: 24px;
+
+}
+
+.footer {
+    height: 100px;
+    background-color: black;
+    border-bottom: 2px red;
+}
+
+.footer .container {
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-bottom: 2px red;
+}
+
+.footer .container p {
+    color: white;
+    font-weight: bold;
+}
+
+.login .container {
+    justify-content: center;
+    background-size: cover;
+    height: 75vh;
+    align-items: center;
+    background-color: transparent;
+}
+
+.login{
+    background-image: url("sombria.jpg");
+}
+
+
+.card2 {
+    background-color: rgba(203, 203, 203, 0.85);
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    width: 500px;
+    height: 270px;
+    align-items: center;
+}
+
+.card2 h2 {
+    color: black;
+}
+
+.campo {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.campo input {
+    width: 400px;
+    padding: 7px 15px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+
+}
+
+.formulario button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin-left: 32%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background-color: black;
+}
+
+.header a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.agora {
+    font-weight: 800;
+
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+.card3 {
+    background-color: rgba(203, 203, 203, 0.85);
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    width: 500px;
+    height: 420px;
+    align-items: center;
+   
+}
+
+.card3 h2 {
+    color: black;
+}
+
+.formulario .btn {
+
+    margin-left: 165px;
+}
+
+
+
+.campo .lbl {
+    margin-right: 350px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.campo .lbl2 {
+    margin-right: 200px;
+    color: black;
+    font-size: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.campo .ipt::placeholder {
+    text-align: center;
+}
+
+.campo input::placeholder {
+    text-align: center;
+}
+ */
+
+
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: black;
+    height: 150px;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.85);
+    
+   
+}
+
+.container img {
+
+    width: 300px;
+}
+
+.titulo {
+    color: #32b9cd;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    width: 300px;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+    height: 70px;
+    margin-right: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar ul {
+    margin-bottom: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 100;
+    font-size: 20px;
+    color: black;
+    border: 5px solid black;
+    border-radius: 50px;
+    justify-content: space-between;
+    margin-top: 0px;
+    height: 100px;
+}
+
+.banner {
+
+    padding: 40px 0;
+    color: white;
+    height: 400px;
+    background-image: url("../assets/sombria.jpg");
+
+
+}
+
+.banner .container {
+
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+.banner .container p {
+    font-size: 36px;
+    width: 25%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+
+.banner .container p span {
+
+    font-weight: bold;
+
+}
+
+.social {
+    background-color: white;
+    padding: 40px;
+
+}
+
+.card {
+    width: 300px;
+    text-align: center;
+    border: 5px solid #32b9cd;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.card img {
+    width: 100%;
+}
+
+.card h4 {
+    font-size: 24px;
+
+}
+
+.footer {
+    height: 100px;
+    background-color: rgb(0, 0, 0);
+    border-bottom: 2px red;
+    margin-top: 70px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+
+.login .container {
+    justify-content: center;
+    background-size: cover;
+    height: 75vh;
+    align-items: center;
+    background-color: transparent;
+}
+
+.login {
+    background-image: url("sombria.jpg");
+}
+
+
+.card2 {
+    background-color: rgba(203, 203, 203, 0.85);
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    width: 500px;
+    height: 270px;
+    align-items: center;
+}
+
+.card2 h2 {
+    color: black;
+}
+
+.campo {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.campo input {
+    width: 400px;
+    padding: 7px 15px;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+
+}
+
+.formulario button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: red;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    margin-left: 32%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+}
+
+button:hover {
+    background-color: black;
+}
+
+.header a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.agora {
+    font-weight: 800;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+.card3 {
+    background-color: rgba(203, 203, 203, 0.85);
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    width: 500px;
+    height: 420px;
+    align-items: center;
+
+}
+
+.card3 h2 {
+    color: black;
+}
+
+.formulario .btn {
+
+    margin-left: 165px;
+}
+
+
+
+.campo .lbl {
+    margin-right: 350px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.campo .lbl2 {
+    margin-right: 200px;
+    color: black;
+    font-size: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.campo .ipt::placeholder {
+    text-align: center;
+}
+
+.campo input::placeholder {
+    text-align: center;
+}

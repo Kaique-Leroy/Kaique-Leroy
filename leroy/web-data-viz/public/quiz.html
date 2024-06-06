@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Filmes de Terror</title>
+    <link rel="stylesheet" href="./css/stylequiz.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Quiz de Filmes de Terror</h1>
+        <div class="card" id="card-1">
+            <h2>Pergunta 1</h2>
+            <p>Em qual filme de terror um grupo de amigos é perseguido por um assassino mascarado no acampamento Crystal
+                Lake?</p>
+            <ul>
+                <li><input type="radio" id="q1-a" name="q1" value="Sexta-Feira 13"> Sexta-Feira 13</li>
+                <li><input type="radio" id="q1-b" name="q1" value="Halloween"> Halloween</li>
+                <li><input type="radio" id="q1-c" name="q1" value="A Hora do Pesadelo"> A Hora do Pesadelo</li>
+            </ul>
+            <button class="next-btn" onclick="verificarResposta(1)">Próxima</button>
+        </div>
+        <div class="card" id="card-2" style="display:none;">
+            <h2>Pergunta 2</h2>
+            <p>Qual é o nome do demônio que possui Regan MacNeil em O Exorcista?</p>
+            <ul>
+                <li><input type="radio" id="q2-b" name="q2" value="Beelzebub"> Beelzebub</li>
+                <li><input type="radio" id="q2-c" name="q2" value="Satanás"> Satanás</li>
+                <li><input type="radio" id="q2-a" name="q2" value="Pazuzu"> Pazuzu</li>
+            </ul>
+            <button class="next-btn" onclick="verificarResposta(2)">Próxima</button>
+        </div>
+        <div class="card" id="card-3" style="display:none;">
+            <h2>Pergunta 3</h2>
+            <p>Qual é o nome do assassino em massa que usa uma máscara de hóquei no filme "Sexta-Feira 13"?</p>
+            <ul>
+                <li><input type="radio" id="q3-a" name="q3" value="Jason Voorhees"> Jason Voorhees</li>
+                <li><input type="radio" id="q3-b" name="q3" value="Freddy Krueger"> Freddy Krueger</li>
+                <li><input type="radio" id="q3-c" name="q3" value="Michael Myers"> Michael Myers</li>
+            </ul>
+            <button class="next-btn" onclick="verificarResposta(3)">Próxima</button>
+        </div>
+        <div class="card" id="card-4" style="display:none;">
+            <h2>Pergunta 4</h2>
+            <p>Qual é o nome do romance de terror de Stephen King que inspirou o filme "It"?</p>
+            <ul>
+                <li><input type="radio" id="q4-a" name="q4" value="Carrie"> Carrie</li>
+                <li><input type="radio" id="q4-b" name="q4" value="The Shining"> The Shining</li>
+                <li><input type="radio" id="q4-c" name="q4" value="It"> It</li>
+            </ul>
+            <button class="next-btn" onclick="verificarResposta(4)">Próxima</button>
+        </div>
+        <div class="card" id="card-5" style="display:none;">
+            <h2>Pergunta 5</h2>
+            <p>Qual é o nome do cientista louco que criou uma raça de cachorros-monstro no filme "Frankenweenie"?</p>
+            <ul>
+                <li><input type="radio" id="q5-b" name="q5" value="Ottoman"> Ottoman</li>
+                <li><input type="radio" id="q5-a" name="q5" value="Othello"> Othello</li>
+                <li><input type="radio" id="q5-c" name="q5" value="Bothans"> Bothans</li>
+            </ul>
+            <button class="next-btn" onclick="verificarResposta(5)">Concluir</button>
+        </div>
+        <br><br>
+        <button onclick="voltar()" class="botao1" id="voltar1">Voltar para página inicial</button>
+        <div class="result-container" id="result-container" style="display:none;">
+            <div class="results" id="results">
+                <img src="./assets/Hey, vocÊ Vamos assistir um filminho.png">
+                <div class="msg">
+                    <h2>Resultado</h2>
+                    <h2>Pontuação:<span id="score">0</span>/5</h2>
+                    <h3>Você acertou:</h3>
+                    <ul class="corretas" id="correct-answers"></ul>
+                    <h3>Você errou:</h3>
+                    <ul class="incorretas" id="incorrect-answers"></ul>
+                </div>
+                
+
+            </div>
+            <p id="result-text"></p>
+            <button class="reset-btn" onclick="resetarQuiz()">Reiniciar</button>
+            <button onclick="dash()" id="botao-dash" class="botao" style="display: flex;">DASHBOARD</button> <br><br>
+            <button onclick="voltar()" id="voltar" class="botao" style="display: none;">Voltar para a página
+                inicial</button>
+
+
+        </div>
+    </div>
+    <script>
+        var respostasCorretas = ["Sexta-Feira 13", "Pazuzu", "Jason Voorhees", "It", "Othello"];
+        var score = 0;
+        var correct = [];
+        var incorrect = [];
+
+        function verificarResposta(questionNumber) {
+            var resposta = document.querySelector(`input[name=q${questionNumber}]:checked`);
+            if (!resposta) {
+                alert("Selecione uma resposta antes de continuar!");
+                return;
+            }
+            if (resposta.value === respostasCorretas[questionNumber - 1]) {
+                score++;
+                correct.push(`Pergunta ${questionNumber}`);
+            } else {
+                incorrect.push(`Pergunta ${questionNumber}<br> Sua resposta: ${resposta.value}`);
+            }
+            if (questionNumber < 5) {
+                document.getElementById(`card-${questionNumber}`).style.display = 'none';
+                document.getElementById(`card-${questionNumber + 1}`).style.display = 'block';
+            } else {
+                document.getElementById('card-5').style.display = 'none';
+                document.getElementById('result-container').style.display = 'block';
+                document.getElementById('score').textContent = score;
+                document.getElementById('correct-answers').innerHTML = correct.map(q => `<li>${q}</li>`).join('');
+                document.getElementById('incorrect-answers').innerHTML = incorrect.map(q => `<li>${q}</li>`).join('');
+                fetch("/pontuacao/cadastrar", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ pontuacao: score, totalQuestoes: 5, fkUsuario: sessionStorage.ID_USUARIO })
+                })
+                    .then(res => {
+                        console.log("resposta: ", res);
+                        if (res.ok) {
+                            console.log("Pontuação salva com sucesso!");
+                        } else {
+                            throw "Houve um erro ao tentar salvar a pontuação!";
+                        }
+                    })
+                    .catch(err => console.log(`#ERRO: ${err}`));
+            }
+        }
+
+        function resetarQuiz() {
+            score = 0;
+            correct = [];
+            incorrect = [];
+            document.getElementById('result-container').style.display = 'none';
+            for (var i = 1; i <= 5; i++) {
+                document.getElementById(`card-${i}`).style.display = 'none';
+            }
+            document.getElementById('card-1').style.display = 'block';
+            for (var i = 0; i < document.querySelectorAll('input[type="radio"]').length; i++) {
+                document.querySelectorAll('input[type="radio"]')[i].checked = false;
+            }
+        }
+
+        function dash() {
+            window.location.href = "dashboard.html"
+        }
+
+        function voltar() {
+            window.location.href = "index.html"
+        }
+     
+    </script>
+</body>
+
+</html>
