@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -127,6 +127,191 @@
         function sair() {
             window.location.href = "index.html";
         }
+    </script>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lado Sombrio - Dashboard</title>
+    <link rel="stylesheet" href="./css/styleindex.css">
+    <link rel="stylesheet" href="./css/dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="center">
+            <div class="logo"><img src="./assets/ladosombrioBranco.png"></div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="#">Sobre</a>
+                <a href="login.html">Login</a>
+                <a href="cadastro.html">Cadastro</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="botoes">
+            <button onclick="refazer()">Refazer Quiz</button><br><br>
+            <button onclick="sair()">Sair</button>
+        </div>
+
+        <div class="center">
+            <div class="h1">
+                <h1>Dashboard</h1>
+            </div>
+            <table id="ranking-table">
+                <thead>
+                    <tr>
+                        <th>Jogador</th>
+                        <th>Pontuação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div id="divChart" style="display:none;">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div id="divPieChart" style="display:none;">
+                <canvas id="myPieChart"></canvas>
+            </div>
+        </div>
+    </main>
+    <script>
+        function buscarPontuacoes() {
+            fetch('/pontuacao/listar')
+                .then(response => response.json())
+                .then(dados => {
+                    const tabela = document.getElementById('ranking-table').getElementsByTagName('tbody')[0];
+                    tabela.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
+
+                    let usernames = [];
+                    let scores = [];
+
+                    dados.forEach((jogador, index) => {
+                        const novaLinha = tabela.insertRow();
+                        const celulaNome = novaLinha.insertCell(0);
+                        const celulaPontuacao = novaLinha.insertCell(1);
+
+                        celulaNome.textContent = jogador.nome;
+                        celulaPontuacao.textContent = jogador.pontuacao;
+
+                        // Adiciona os dados para o gráfico
+                        usernames.push(jogador.nome);
+                        scores.push(jogador.pontuacao);
+                    });
+
+                    document.getElementById('divChart').style.display = "block";
+
+                    // Configuração do gráfico
+                    const data = {
+                        labels: usernames,
+                        datasets: [{
+                            label: 'Pontuação',
+                            backgroundColor: '#3022cf',
+                            borderColor: 'black',
+                            borderWidth: 2,
+                            data: scores,
+                        }]
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data: data,
+                        options: {
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        color: 'black',
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            return 'Pontuação: ' + context.raw;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    // Renderiza o gráfico
+                    const canvas = document.getElementById('myChart');
+                    new Chart(canvas, config);
+
+                    // Configuração do gráfico de pizza
+                    const pieData = {
+                        labels: usernames,
+                        datasets: [{
+                            label: 'Pontuação',
+                            backgroundColor: [
+                                '#FF6384',
+                                '#36A2EB',
+                                '#FFCE56',
+                                '#8BC34A',
+                                '#E5E5EA'
+                            ],
+                            borderColor: 'black',
+                            borderWidth: 2,
+                            data: scores,
+                        }]
+                    };
+
+                    const pieConfig = {
+                        type: 'pie',
+                        data: pieData,
+                        options: {
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        color: 'black',
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function (context) {
+                                            return 'Pontuação: ' + context.raw;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    };
+
+                    // Renderiza o gráfico de pizza
+                    const pieCanvas = document.getElementById('myPieChart');
+                    new Chart(pieCanvas, pieConfig);
+
+                    document.getElementById('divPieChart').style.display = "block";
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar pontuações:', error);
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            buscarPontuacoes();
+        });
+
+        function refazer() {
+            window.location.href = "quiz.html";
+        }
+
+        function sair() {
+            window.location.href = "index.html";
+        }
+
     </script>
 </body>
 
