@@ -92,6 +92,15 @@ section.sobre {
     justify-content: center;
 }
 
+h3{
+    color: rgb(255, 0, 0);
+    font-family: Caracura;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font-size: 25px;
+}
+
 h3 a {
     color: rgb(255, 0, 0);
     margin-left: 700px;

@@ -8,7 +8,18 @@ function cadastrar(pontuacao, totalQuestoes, fkUsuario) {
     return database.executar(instrucaoSql);
 }
 
-function listar() {
+function listar(idJogador) {
+    var instrucaoSql = `
+        SELECT pontuacao ,DATE_FORMAT(data, '%d/%m/%Y') AS data
+        FROM pontuacao
+        WHERE fkUsuario = '${idJogador}'
+        ORDER BY data
+    `;
+
+    return database.executar(instrucaoSql);
+}
+
+function listarTabela(){
     var instrucaoSql = `
     SELECT 
     u.nome, 
@@ -25,7 +36,9 @@ ORDER BY
 
     return database.executar(instrucaoSql);
 }
+
 module.exports = {
     cadastrar,
     listar,
+    listarTabela
 };

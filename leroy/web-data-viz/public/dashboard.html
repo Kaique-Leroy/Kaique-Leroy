@@ -160,6 +160,7 @@
     <main>
         <div class="botoes">
             <button onclick="refazer()">Refazer Quiz</button><br><br>
+            <button onclick="post()">Post</button><br><br>
             <button onclick="sair()">Sair</button>
         </div>
 
@@ -177,49 +178,59 @@
                 <tbody>
                 </tbody>
             </table>
+            <div style="display: flex; width: 70%; gap: 4rem;">
             <div id="divChart" style="display:none;">
+                <h3>Últimos Acertos</h3>
                 <canvas id="myChart"></canvas>
             </div>
             <div id="divPieChart" style="display:none;">
+                <h3>Percentual de Acertos e Erros</h3>
                 <canvas id="myPieChart"></canvas>
             </div>
         </div>
+        </div>
     </main>
     <script>
-        function buscarPontuacoes() {
-            fetch('/pontuacao/listar')
+        function criarTabela() {
+            fetch('/pontuacao/listar-tabela')
                 .then(response => response.json())
                 .then(dados => {
                     const tabela = document.getElementById('ranking-table').getElementsByTagName('tbody')[0];
                     tabela.innerHTML = ''; // Limpa a tabela antes de adicionar novos dados
 
-                    let usernames = [];
-                    let scores = [];
-
-                    dados.forEach((jogador, index) => {
+                    dados.forEach((jogador) => {
                         const novaLinha = tabela.insertRow();
                         const celulaNome = novaLinha.insertCell(0);
                         const celulaPontuacao = novaLinha.insertCell(1);
 
                         celulaNome.textContent = jogador.nome;
                         celulaPontuacao.textContent = jogador.pontuacao;
-
-                        // Adiciona os dados para o gráfico
-                        usernames.push(jogador.nome);
-                        scores.push(jogador.pontuacao);
                     });
+                })
+                .catch(error => {
+                    console.error('Erro ao listar a tabela:', error);
+                });
+        }
 
+        function buscarPontuacoes() {
+            var idJogador = sessionStorage.ID_USUARIO;
+
+            fetch(`/pontuacao/listar/${idJogador}`)
+                .then(response => response.json())
+                .then(dados => {
                     document.getElementById('divChart').style.display = "block";
+                    var label = dados.map(item => item.data);
+                    var acertos = dados.map(item => item.pontuacao);
 
-                    // Configuração do gráfico
+                    // Configuração do gráfico de linha
                     const data = {
-                        labels: usernames,
+                        labels: label,
                         datasets: [{
                             label: 'Pontuação',
-                            backgroundColor: '#3022cf',
+                            backgroundColor: '#660000',
                             borderColor: 'black',
                             borderWidth: 2,
-                            data: scores,
+                            data: acertos,
                         }]
                     };
 
@@ -245,73 +256,85 @@
                         }
                     };
 
-                    // Renderiza o gráfico
+                    // Renderiza o gráfico de linha
                     const canvas = document.getElementById('myChart');
                     new Chart(canvas, config);
 
-                    // Configuração do gráfico de pizza
-                    const pieData = {
-                        labels: usernames,
-                        datasets: [{
-                            label: 'Pontuação',
-                            backgroundColor: [
-                                '#FF6384',
-                                '#36A2EB',
-                                '#FFCE56',
-                                '#8BC34A',
-                                '#E5E5EA'
-                            ],
-                            borderColor: 'black',
-                            borderWidth: 2,
-                            data: scores,
-                        }]
-                    };
-
-                    const pieConfig = {
-                        type: 'pie',
-                        data: pieData,
-                        options: {
-                            plugins: {
-                                legend: {
-                                    display: true,
-                                    labels: {
-                                        color: 'black',
-                                    }
-                                },
-                                tooltip: {
-                                    callbacks: {
-                                        label: function (context) {
-                                            return 'Pontuação: ' + context.raw;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    };
-
-                    // Renderiza o gráfico de pizza
-                    const pieCanvas = document.getElementById('myPieChart');
-                    new Chart(pieCanvas, pieConfig);
-
-                    document.getElementById('divPieChart').style.display = "block";
+                    calcularPercentualAcertos(dados);
                 })
                 .catch(error => {
                     console.error('Erro ao buscar pontuações:', error);
                 });
         }
 
-        document.addEventListener('DOMContentLoaded', (event) => {
+        function calcularPercentualAcertos(dados) {
+            document.getElementById('divPieChart').style.display = "block";
+
+            const totalPerguntas = 5
+            const totalAcertos = dados.reduce((total, item) => total + item.pontuacao, 0);
+            const percentualAcertos = ((totalPerguntas / totalAcertos) * 100).toFixed(2);
+
+            console.log(totalAcertos, totalPerguntas, percentualAcertos);
+
+            // Configuração do gráfico de pizza
+            const dataPie = {
+                labels: ['Erros', 'Acertos'],
+                datasets: [{
+                    label: 'Percentual de Acertos',
+                    backgroundColor: ['#660000', '#e0e0e0'],
+                    borderColor: 'white',
+                    borderWidth: 2,
+                    data: [percentualAcertos, (100 - percentualAcertos)],
+                }]
+            };
+
+            const configPie = {
+                type: 'pie',
+                data: dataPie,
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: 'white',
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return context.label + ': ' + context.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Renderiza o gráfico de pizza
+            const canvasPie = document.getElementById('myPieChart');
+            new Chart(canvasPie, configPie);
+        }
+
+        function atualizarGraficos() {
             buscarPontuacoes();
+            criarTabela();
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            atualizarGraficos();
         });
 
         function refazer() {
             window.location.href = "quiz.html";
         }
 
+        function post(){
+            window.location.href = "post.html";
+        }
+
         function sair() {
             window.location.href = "index.html";
         }
-
     </script>
 </body>
 

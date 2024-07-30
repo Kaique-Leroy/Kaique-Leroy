@@ -1,94 +1,66 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
-	<link rel="shortcut icon" href="../assets/imgs/1-removebg-preview.png" type="image/x-icon" />
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lado Sombrio | Post</title>
-
-    <link rel="stylesheet" href="css/dashboards.css">
-    <link rel="stylesheet" href="css/estilo.css">
-    <script src="../js/sessao.js"></script>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <title>Lado Sombrio - Dashboard</title>
+    <link rel="stylesheet" href="./css/styleindex.css">
+    <link rel="stylesheet" href="./css/dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
-
-    <div class="janela">
-
-
-        <div class="header-left">
-
-            <h1>Lado Sombrio</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+<body onload="atualizarFeed()">
+    <header>
+        <div class="center">
+            <div class="logo"><img src="./assets/ladosombrioBranco.png"></div>
+            <div class="menu">
+                <a href="index.html">Home</a>
+                <a href="#">Sobre</a>
+                <a href="login.html">Login</a>
+                <a href="cadastro.html">Cadastro</a>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="mainPage.html">
-                    <h3>Geral</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./quiz.html">
-                    <h3>Quiz</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <h3>Post</h3>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
-
+        </div>
+    </header>
+    <main>
+        <div class="botoes">
+            <button onclick="refazer()">Dashboard</button><br><br>
+            <button onclick="post()">Post</button><br><br>
+            <button onclick="sair()">Sair</button>
         </div>
 
-        <div class="dash-right">
 
-
-            <div class="avisos">
-                <div id="alerta">
+        <div style="display: flex; flex-direction: column; gap: 4rem;">
+            <div>
+                <h1>Publicar um Post</h1>
+                <div class="div-form">
+                    <form id="form_postagem" method="post" onsubmit="return publicar()">
+                        <label>
+                            Título:
+                            <br>
+                            <input name="titulo" id="titulo" maxlength="100" type="text">
+                        </label>
+                        <br>
+                        <br>
+                        <label>
+                            Descrição (máximo de 255 caracteres):
+                            <br>
+                            <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                        </label>
+                        <br>
+                        <br>
+                        <button>Enviar</button>
+                    </form>
                 </div>
-                <div class="container">
-                    <h1>Publicar um Post</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <br>
-                            <label>
-                                Descrição (máximo de 255 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <h1>Posts da Comunidade</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
+                <h1>Posts da Comunidade</h1>
+                <div class="div-results">
+                    <div id="feed_container" class="feed-container">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+        </div>
 
 
 
@@ -98,7 +70,7 @@
 </html>
 
 <script>
-    
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
@@ -125,9 +97,8 @@
 
             if (resposta.ok) {
                 window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/post.html";
+                window.location = "post.html";
                 limparFormulario();
-                finalizarAguardar();
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -135,18 +106,9 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
         });
 
         return false;
-
-    }
-
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
 
     }
 
@@ -161,7 +123,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/post.html"
+                window.location = "post.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -234,16 +196,25 @@
                         divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
                     }
-
-                    finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            finalizarAguardar();
         });
+    }
+
+    function refazer() {
+        window.location.href = "dashboard.html";
+    }
+
+    function post() {
+        window.location.href = "post.html";
+    }
+
+    function sair() {
+        window.location.href = "index.html";
     }
 
 </script>

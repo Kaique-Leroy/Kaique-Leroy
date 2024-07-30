@@ -15,7 +15,18 @@ function cadastrar(req, res) {
 
 
 function listar(req, res) {
-    pontuacaoModel.listar().then((resultado) => {
+    const { idJogador } = req.params
+
+    pontuacaoModel.listar(idJogador).then((resultado) => {
+        res.status(200).json(resultado);
+    }).catch((erro) => {
+        console.error(erro);
+        res.status(500).json({ mensagem: "Houve um erro ao tentar listar as pontuações." });
+    });
+}
+
+function listarTabela(req, res){
+    pontuacaoModel.listarTabela().then((resultado) => {
         res.status(200).json(resultado);
     }).catch((erro) => {
         console.error(erro);
@@ -27,4 +38,5 @@ function listar(req, res) {
 module.exports = {
     cadastrar,
     listar,
+    listarTabela
 };

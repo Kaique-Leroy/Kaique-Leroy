@@ -123,6 +123,7 @@
                         console.log("resposta: ", res);
                         if (res.ok) {
                             console.log("Pontuação salva com sucesso!");
+                            atualizarGrafico();
                         } else {
                             throw "Houve um erro ao tentar salvar a pontuação!";
                         }
