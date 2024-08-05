@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lado Sombrio - Dashboard</title>
     <link rel="stylesheet" href="./css/styleindex.css">
-    <link rel="stylesheet" href="./css/dash.css">
+    <link rel="stylesheet" href="./css/post.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -19,16 +19,11 @@
                 <a href="#">Sobre</a>
                 <a href="login.html">Login</a>
                 <a href="cadastro.html">Cadastro</a>
+                <a href="dashboard.html">Dashboard</a>
             </div>
         </div>
     </header>
     <main>
-        <div class="botoes">
-            <button onclick="refazer()">Dashboard</button><br><br>
-            <button onclick="post()">Post</button><br><br>
-            <button onclick="sair()">Sair</button>
-        </div>
-
 
         <div style="display: flex; flex-direction: column; gap: 4rem;">
             <div>
@@ -49,7 +44,7 @@
                         </label>
                         <br>
                         <br>
-                        <button>Enviar</button>
+                        <button>Enviar</button> <button onclick="sair()">Sair</button>
                     </form>
                 </div>
                 <h1>Posts da Comunidade</h1>
