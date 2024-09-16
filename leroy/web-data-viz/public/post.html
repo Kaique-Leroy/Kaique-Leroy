@@ -1,4 +1,4 @@
--- Criação da tela “post”, para a inserção de posts sobre filmes de terror no site. dia 28/06/2024
+<!-- -- Criação da tela “post”, para a inserção de posts sobre filmes de terror no site. dia 28/06/2024 -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +68,8 @@
 
 <script>
 
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var idUsuario = sessionStorage.ID_USUARIO;
 
     function limparFormulario() {
         document.getElementById("form_postagem").reset();
@@ -76,7 +77,7 @@
 
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
-
+console.log(idUsuario)
         var corpo = {
             titulo: form_postagem.titulo.value,
             descricao: form_postagem.descricao.value
@@ -108,30 +109,33 @@
         return false;
 
     }
+    
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "post.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
+   function deletar(idPost) {
+    console.log("Criar função de apagar post escolhido - ID " + idPost);
+    fetch(`/avisos/deletar/${idPost}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            window.alert("Post deletado com sucesso pelo usuário de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.location = "post.html";
+        } else if (resposta.status == 404) {
+            window.alert("Erro 404! Post não encontrado.");
+        } else {
+            throw ("Houve um erro ao tentar deletar o post! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
 
     function atualizarFeed() {
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
         fetch("/avisos/listar").then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
@@ -161,11 +165,11 @@
                         var btnDeletar = document.createElement("button");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanID.innerHTML = "ID: <b>" + publicacao.idPost + "</b>";
                         spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
                         spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
+                        // btnEditar.innerHTML = "Editar";
                         btnDeletar.innerHTML = "Deletar";
 
                         divPublicacao.className = "publicacao";
@@ -176,20 +180,20 @@
 
                         divButtons.className = "div-buttons"
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+                        // btnEditar.className = "publicacao-btn-editar"    
+                        btnEditar.id = "btnEditar" + publicacao.idPost;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idPost})`);
 
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+                        // btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idPost;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idPost})`);
 
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
+                        // divButtons.appendChild(btnEditar);
                         divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
                     }

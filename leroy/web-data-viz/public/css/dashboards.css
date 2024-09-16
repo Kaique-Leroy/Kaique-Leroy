@@ -90,6 +90,7 @@ body {
 	align-items: stretch;
 	border-bottom: 3px solid #780000;
 	padding: 20px;
+	
 }
 
 .publicacao>*:not(:last-child) {
@@ -101,9 +102,12 @@ body {
 }
 
 .div-results .feed-container {
+	display:flex ;
+	flex-direction: column;
 	background-color: #212124;
 	border-radius: 5px;
 	margin-bottom: 80px;
+	margin-left: 400px;
 }
 
 .div-buttons {

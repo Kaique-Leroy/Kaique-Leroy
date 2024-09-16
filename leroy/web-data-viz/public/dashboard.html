@@ -151,7 +151,6 @@
             <div class="logo"><img src="./assets/ladosombrioBranco.png"></div>
             <div class="menu">
                 <a href="index.html">Home</a>
-                <a href="#">Sobre</a>
                 <a href="login.html">Login</a>
                 <a href="cadastro.html">Cadastro</a>
             </div>
@@ -193,6 +192,7 @@
         </div>
     </main>
     <script>
+        var idUsuario = sessionStorage.ID_USUARIO;
         function criarTabela() {
             fetch('/pontuacao/listar-tabela')
                 .then(response => response.json())
