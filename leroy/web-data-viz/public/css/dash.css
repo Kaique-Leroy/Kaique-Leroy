@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: black;
 }
 table {
@@ -82,4 +82,252 @@ button {
     background-color: white;
     height: 100%;
     width: 100%;
-  }
+  } */
+
+  /* Importação de Fontes Temáticas */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&display=swap');
+
+/* Background Geral com Textura Sombria */
+body {
+    background-image: url('./assets/haunted-background.jpg'); /* Adicione uma imagem de fundo temática */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    overflow-x: hidden;
+}
+
+/* Estilização do Header */
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+header .logo img {
+    width: 200px;
+    height: auto;
+    margin-right: 900px;
+}
+
+header .menu a {
+    color: #ffffff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-family: 'Creepster', cursive;
+    transition: color 0.3s, text-shadow 0.3s;
+    font-size: 20px;
+}
+
+header .menu a:hover {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* Títulos com Fonte Temática e Efeitos */
+h1 {
+    font-family: 'Creepster', cursive;
+    font-size: 48px;
+    color: #ff0000;
+    text-align: center;
+    text-shadow: 3px 3px 5px #000;
+    animation: flicker 2s infinite;
+    margin: 20px 0;
+}
+
+/* Animação de Flicker */
+@keyframes flicker {
+    0% { opacity: 1; text-shadow: 2px 2px 5px #000; }
+    50% { opacity: 0.8; text-shadow: 4px 4px 10px #000; }
+    100% { opacity: 1; text-shadow: 2px 2px 5px #000; }
+}
+
+/* Estilização das Tabelas */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: rgba(50, 50, 50, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid #725AC1;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+th {
+    background-color: #725AC1;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 1px 1px 3px #000;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(115, 90, 193, 0.2);
+}
+
+tr:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Estilização dos Botões */
+button {
+    position: relative;
+    display: inline-block;
+    margin: 15px;
+    padding: 15px 30px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #725AC1;
+    background: transparent;
+    cursor: pointer;
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(114, 90, 193, 0.5);
+    font-family: 'Press Start 2P', cursive;
+}
+
+button:hover {
+    color: #fff;
+    background-color: #725AC1;
+    box-shadow: 0 0 20px rgba(114, 90, 193, 0.8);
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(114, 90, 193, 0.5);
+}
+
+/* Adicionando Ícones de Terror nos Botões (Opcional) */
+button::before {
+    content: '🦇'; /* Ícone de morcego, substitua conforme necessário */
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+button:hover::before {
+    opacity: 1;
+}
+
+/* Container de Botões Centralizado */
+.botoes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px 0;
+}
+
+/* Estilização dos Gráficos */
+#divChart, #divPieChart {
+    width: 80vw;
+    height: 50vh;
+    margin: 20px auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #725AC1;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(114, 90, 193, 0.5);
+}
+
+canvas {
+    background-color: #2c2c2c;
+    border-radius: 8px;
+}
+
+/* Efeitos de Neon para Títulos dos Gráficos */
+#divChart h3, #divPieChart h3 {
+    font-family: 'Creepster', cursive;
+    color: #ff0000;
+    text-align: center;
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    margin-bottom: 20px;
+    animation: neonGlow 1.5s infinite alternate;
+}
+
+/* Animação de Neon Glow */
+@keyframes neonGlow {
+    from {
+        text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    }
+    to {
+        text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+    }
+}
+
+/* Estilização do Div do Header H1 */
+.h1 {
+    margin-top: -7vh;
+    height: 15vh;
+    width: 3vw;
+}
+
+/* Estilização do Título H1 */
+h1 {
+    height: 15vh;
+    width: 25vw;
+}
+
+/* Ajustes no Ranking Table */
+#ranking-table {
+    margin-top: 2vh;
+    margin-bottom: 8vh;
+}
+
+/* Ajustes no Div do Chart */
+#divChart {
+    width: 70vw;
+    height: 45vh;
+    margin-bottom: 10vh;
+    background-color: transparent;
+}
+
+/* Estilização do Gráfico de Linha */
+#myChart {
+    background-color: #2c2c2c;
+    height: 100%;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsividade para Telas Menores */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 32px;
+        width: 80vw;
+    }
+
+    .botoes {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    table, #divChart, #divPieChart {
+        width: 95vw;
+    }
+
+    button {
+        margin: 10px 0;
+        width: 80%;
+    }
+}
